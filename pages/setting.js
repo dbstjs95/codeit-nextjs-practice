@@ -1,11 +1,17 @@
-export default function setting() {
-  return <div>Setting 페이지</div>;
-}
+import Container from "@/components/Container";
+import Header from "@/components/Header";
+import styles from "@/styles/Setting.module.css";
 
-// export async function getServerSideProps(ctx) {
-//   return {
-//     props: {
-//       data: null,
-//     },
-//   };
-// }
+export default function setting() {
+  return (
+    <>
+      <Header />
+      <Container>
+        <h1 className={styles.title}>설정</h1>
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>테마 설정</h2>
+        </section>
+      </Container>
+    </>
+  );
+}

@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 useRouter;
+import styles from "./SearchForm.module.css";
 
 export default function SearchForm({ initialValue = "" }) {
   const router = useRouter();
@@ -17,9 +18,15 @@ export default function SearchForm({ initialValue = "" }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="q" value={value} onChange={handleChange} />
-      <button>검색</button>
+    <form className={styles.searchForm} onSubmit={handleSubmit}>
+      <input
+        className={styles.searchInput}
+        name="q"
+        value={value}
+        placeholder="찾고 싶은 옷을 검색해보세요."
+        onChange={handleChange}
+      />
+      <button className={styles.searchButton}>검색</button>
     </form>
   );
 }
