@@ -8,3 +8,9 @@
   border: none;
   border-radius: 10px;
 }
+
+/* 추가 */
+:global(.light) .button {
+  color: #f9f9f9;
+  background-color: #505050;
+}
