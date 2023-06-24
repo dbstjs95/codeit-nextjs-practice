@@ -2,7 +2,7 @@ import DropDown from "@/components/DropDown";
 import { useTheme } from "@/lib/ThemeContext";
 import styles from "@/styles/Setting.module.css";
 
-export default function setting() {
+export default function Setting() {
   const { theme, setTheme } = useTheme();
 
   function handleDropdownChange(name, value) {
