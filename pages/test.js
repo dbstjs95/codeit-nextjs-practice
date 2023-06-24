@@ -3,6 +3,8 @@ import Image from "next/image";
 // Image 컴포넌트를 쓰면 이미지 크기를 next.js 서버에서 알아서 최적화 해주고, lazy loading도 지원해서 페이지 로딩 속도도 최적화할 수 있다.
 // Image 컴포넌트는 크기 지정을 하지 않으면 에러가 뜬다. 하지만 늘 크기를 지정할 수 없기에 유연하게 크기를 지정하는 방법도 있다. --> fill(포지션된 조상 요소에 꽉 차도록) 속성
 
+// 참고로 외부 이미지를 사용할 때는 next.config.js에서 이미지 설정을 따로 해줘야 함.
+
 export default function Test() {
   return (
     <>
