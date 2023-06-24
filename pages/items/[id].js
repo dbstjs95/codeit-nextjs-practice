@@ -7,25 +7,48 @@ import StarRating from "@/components/StarRating";
 import Image from "next/image";
 import Spinner from "@/components/Spinner";
 
-export async function getStaticPaths() {
-  const res = await axios.get("/products/");
-  const products = res.data.results;
-  const paths = products.map((product) => ({
-    params: { id: String(product.id) },
-  }));
+// sizeReviews는 사용자 입력에 따라 달라지므로 정적생성이 맞지않다. 그리고 next.js에서 정적생성과 서버사이드를 동시에 할 수 없다. 따라서 기존에 했던 getStaticPaths와 getStaticProps는 주석처리한다.
+// export async function getStaticPaths() {
+//   const res = await axios.get("/products/");
+//   const products = res.data.results;
+//   const paths = products.map((product) => ({
+//     params: { id: String(product.id) },
+//   }));
 
-  return {
-    paths,
-    fallback: true,
-  };
-}
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps(context) {
+// export async function getStaticProps(context) {
+//   const productId = context.params["id"];
+//   let product;
+//   try {
+//     const res = await axios.get(`/products/${productId}`);
+//     product = res.data;
+//   } catch {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   return {
+//     props: { product },
+//   };
+// }
+
+export async function getServerSideProps(context) {
   const productId = context.params["id"];
-  let product;
+  let product, sizeReviews;
   try {
-    const res = await axios.get(`/products/${productId}`);
-    product = res.data;
+    const promise1 = axios.get(`/products/${productId}`);
+    const promise2 = axios.get(`/size_reviews?product_id=${productId}`);
+
+    const res = await Promise.all([promise1, promise2]);
+
+    product = res[0].data ?? [];
+    sizeReviews = res[1].data.results ?? [];
   } catch {
     return {
       notFound: true,
@@ -33,26 +56,11 @@ export async function getStaticProps(context) {
   }
 
   return {
-    props: { product },
+    props: { product, sizeReviews },
   };
 }
 
-export default function Product({ product }) {
-  const [sizeReviews, setSizeReviews] = useState([]);
-  const router = useRouter();
-  const { id } = router.query;
-
-  async function getSizeReviews(targetId) {
-    const res = await axios.get(`/size_reviews?product_id=${targetId}`);
-    const nextSizeReviews = res.data.results ?? [];
-    setSizeReviews(nextSizeReviews);
-  }
-
-  useEffect(() => {
-    if (!id) return;
-    getSizeReviews(id);
-  }, [id]);
-
+export default function Product({ product, sizeReviews }) {
   if (!product)
     return (
       <div className={styles.loading}>
