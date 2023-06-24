@@ -4,7 +4,7 @@
 }
 
 :global(.light) .header {
-  border-bottom: 1px solid #e1e1e1;
+  border-color: #e1e1e1;
 }
 
 .container {
@@ -14,7 +14,25 @@
 }
 
 .logo {
+  width: 155px;
+  height: 29px;
+  text-indent: -9999px;
+  background-image: url("/logo-white.svg");
+  background-size: contain;
+}
+
+:global(.light) .logo {
+  background-image: url("/logo-black.svg");
 }
 
 .setting {
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+  background-image: url("/setting-white.svg");
+  background-size: contain;
+}
+
+:global(.light) .setting {
+  background-image: url("/setting-black.svg");
 }
