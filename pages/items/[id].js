@@ -8,8 +8,14 @@ import Image from "next/image";
 import Spinner from "@/components/Spinner";
 
 export async function getStaticPaths() {
+  const res = await axios.get("/products/");
+  const products = res.data.results;
+  const paths = products.map((product) => ({
+    params: { id: String(product.id) },
+  }));
+
   return {
-    paths: [{ params: { id: "1" } }, { params: { id: "2" } }],
+    paths,
     fallback: true,
   };
 }
