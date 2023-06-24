@@ -1,4 +1,4 @@
-import DropDown from "@/components/DropDown";
+import Dropdown from "@/components/Dropdown";
 import { useTheme } from "@/lib/ThemeContext";
 import styles from "@/styles/Setting.module.css";
 
@@ -15,7 +15,7 @@ export default function Setting() {
       <h1 className={styles.title}>설정</h1>
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>테마 설정</h2>
-        <DropDown
+        <Dropdown
           className={styles.input}
           name="theme"
           value={theme}
