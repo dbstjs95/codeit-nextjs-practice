@@ -1,6 +1,5 @@
 import SearchForm from "@/components/SearchForm";
 import ProductList from "@/components/ProductList";
-import { useEffect, useState } from "react";
 import axios from "@/lib/axios";
 import styles from "@/styles/Home.module.css";
 import Head from "next/head";

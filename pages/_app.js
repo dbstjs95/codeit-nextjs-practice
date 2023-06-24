@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ThemeProvider>
         <Header />
-        <Container>
+        <Container className="container">
           <Component {...pageProps} />
         </Container>
       </ThemeProvider>
